@@ -9,7 +9,6 @@ BlogListView.MSG = {
 }
 
 BlogListView.setup = function (el) {
-  console.log(tag)
   this.init(el)
   this.eventBinding()
   return this
@@ -19,18 +18,23 @@ BlogListView.render = function (data = []) {
   this.el.innerHTML = data.length ? this.getListHtml(data) : this.MSG.NO_ITEM
 }
 
+/**
+ * NOTE : 
+ * To avoid the blank problem on data-xxx, 
+ * I have used encodeURIComponent and decodeURIComponent.
+ */
 BlogListView.getListHtml = function (data) {
   return data
     .map(v => `<li data-title=${encodeURIComponent(v.title)}>
-                <a href=${v.link}> ${v.title}</a>
-                <div class="like">찜하기</div>
+                 <a href=${v.link}> ${v.title}</a>
+                 <div class="like">찜하기</div>
                </li>`)
     .reduce((html, a) => `${html}${a}`, '<ul>')
     .concat('</ul>')
 }
 
 BlogListView.eventBinding = function () {
-  this.el.addEventListener('click', e => {
+  this.on('click', e => {
     const className = e.target.className
     if (className !== 'like' && className !== 'unlike') return
     const title = e.target.parentNode.dataset.title

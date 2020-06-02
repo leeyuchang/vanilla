@@ -168,7 +168,7 @@ FormView.setup = function (el) {
 }
 
 FormView.eventBind = function () {
-  this.el.addEventListener('click',() => this.emit('@click'))
+  this.on('click', () => this.emit('@click'))
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (FormView);
