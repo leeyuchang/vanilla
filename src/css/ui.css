@@ -1,3 +1,12 @@
+button {
+  width: auto;
+  height: auto;
+  border: 5px;
+  border-radius: 0.3em;
+  font-size: 2rem;
+  background: gold;
+}
+
 /* modal */
 .modal {
   display: flex;
